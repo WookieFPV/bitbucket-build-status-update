@@ -62,3 +62,4 @@ inputs:
       title: Status
       is_required: true
       value_options: [SUCCESSFUL, FAILED, INPROGRESS]
+  - bitbucket_status_url: $BITBUCKET_STATUS_URL
