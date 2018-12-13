@@ -26,6 +26,6 @@ EOF
 echo "Sending update to $URL"
 curl -X POST \
   $URL \
-  -u $BITBUCKET_AUTH \
+  -u $SECRET_BITBUCKET_AUTH \
   -H 'Content-Type: application/json' \
   -d "$BITBUCKET_STATUS" \
