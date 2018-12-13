@@ -1,12 +1,12 @@
 #!/bin/bash
-set -ex
+# set -ex
 
 if [ "$bitbucket_build_status" = "AUTO" ];then
   echo "Selected AUTO bitbucket_build_status"
   bitbucket_build_status="FAILED"
   echo "Setting build status to successful? ${BITRISE_BUILD_STATUS}"
   if [ "$BITRISE_BUILD_STATUS" -eq "0" ];then
-    STATUS="SUCCESSFUL"
+    bitbucket_build_status="SUCCESSFUL"
   fi
 fi
 # printenv
