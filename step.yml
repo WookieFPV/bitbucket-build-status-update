@@ -57,7 +57,7 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - bitbucket_build_status: FAILED
+  - bitbucket_build_status:
     opts:
       title: Status
       is_required: true
