@@ -13,6 +13,7 @@ summary: |
   Send a status update to your bitbucket server.
 description: |
   Sends a status update to a bitbucket server via the REST API
+  Requires secret BITBUCKET_AUTH (username:password)
 website: https://github.com/berichte/bitbucket-build-status-update.git
 source_code_url: https://github.com/berichte/bitbucket-build-status-update.git
 support_url: https://github.com/berichte/bitbucket-build-status-update.git
