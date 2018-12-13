@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+printenv
 echo "commit $commit"
 echo "$BITRISE_GIT_COMMIT"
 echo "Sending status ${bitbucket_build_status} to bitbucket."
