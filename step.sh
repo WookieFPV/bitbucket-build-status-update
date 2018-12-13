@@ -2,7 +2,7 @@
 set -ex
 
 echo "Sending status ${bitbucket_build_status} to bitbucket."
-URL="${BITBUCKET_STATUS_URL}/${BITRISE_GIT_COMMIT}"
+URL="${bitbucket_status_url}/${commit}"
 BITBUCKET_STATUS=$(cat <<EOF
 {
   "state": "$bitbucket_build_status",

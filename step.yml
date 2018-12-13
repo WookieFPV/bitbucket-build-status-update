@@ -64,3 +64,4 @@ inputs:
       is_required: true
       value_options: [SUCCESSFUL, FAILED, INPROGRESS]
   - bitbucket_status_url: $BITBUCKET_STATUS_URL
+  - commit: $BITRISE_GIT_COMMIT
