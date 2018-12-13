@@ -58,14 +58,11 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - bitbucket_build_status:
+  - bitbucket_build_status: AUTO
     opts:
       title: Status
       is_required: true
-      value_options: [SUCCESSFUL, FAILED, INPROGRESS]
+      value_options: [SUCCESSFUL, FAILED, INPROGRESS, AUTO]
   - bitbucket_status_url: $BITBUCKET_STATUS_URL
     opts:
       title: Url to bitbucket server api
-  - commit: $GIT_CLONE_COMMIT_HASH
-    opts:
-      title: Commit

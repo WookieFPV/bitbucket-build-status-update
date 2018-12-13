@@ -1,11 +1,15 @@
 #!/bin/bash
 set -ex
 
+if [ $bitbucket_build_status -eq "AUTO" ];then
+  bitbucket_build_status="FAILED"
+  if [ "$BITRISE_BUILD_STATUS" -eq "1" ];then
+    STATUS="SUCCESSFUL"
+  fi
+fi
 # printenv
-echo "commit $commit"
-echo "$GIT_CLONE_COMMIT_HASH"
 echo "Sending status ${bitbucket_build_status} to bitbucket."
-URL="${bitbucket_status_url}/${commit}"
+URL="${bitbucket_status_url}/${GIT_CLONE_COMMIT_HASH}"
 BITBUCKET_STATUS=$(cat <<EOF
 {
   "state": "$bitbucket_build_status",
