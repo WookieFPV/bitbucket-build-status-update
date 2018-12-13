@@ -16,7 +16,9 @@ BITBUCKET_STATUS=$(cat <<EOF
 {
   "state": "$bitbucket_build_status",
 	"key": "BITRISE",
-	"url": "$BITRISE_BUILD_URL"
+	"url": "$BITRISE_BUILD_URL",
+  "name": "$GIT_CLONE_COMMIT_AUTHOR_NAME",
+  "description": "$GIT_CLONE_COMMIT_MESSAGE_BODY"
 }
 EOF
 )
