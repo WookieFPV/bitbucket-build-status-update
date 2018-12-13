@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-if [ "$bitbucket_build_status" -eq "AUTO" ];then
+if [ "$bitbucket_build_status" = "AUTO" ];then
   echo "Selected AUTO bitbucket_build_status"
   bitbucket_build_status="FAILED"
   echo "Setting build status to successful? ${BITRISE_BUILD_STATUS}"
