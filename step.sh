@@ -1,9 +1,11 @@
 #!/bin/bash
 set -ex
 
-if [ $bitbucket_build_status -eq "AUTO" ];then
+if [ "$bitbucket_build_status" -eq "AUTO" ];then
+  echo "Selected AUTO bitbucket_build_status"
   bitbucket_build_status="FAILED"
-  if [ "$BITRISE_BUILD_STATUS" -eq "1" ];then
+  echo "Setting build status to successful? ${BITRISE_BUILD_STATUS}"
+  if [ "$BITRISE_BUILD_STATUS" -eq "0" ];then
     STATUS="SUCCESSFUL"
   fi
 fi
@@ -19,8 +21,7 @@ BITBUCKET_STATUS=$(cat <<EOF
 EOF
 )
 
-echo $URL
-echo $BITBUCKET_STATUS
+echo "Sending update to $URL"
 curl -X POST \
   $URL \
   -u $BITBUCKET_AUTH \
