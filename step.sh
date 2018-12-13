@@ -1,9 +1,9 @@
 #!/bin/bash
 set -ex
 
-printenv
+# printenv
 echo "commit $commit"
-echo "$BITRISE_GIT_COMMIT"
+echo "$GIT_CLONE_COMMIT_HASH"
 echo "Sending status ${bitbucket_build_status} to bitbucket."
 URL="${bitbucket_status_url}/${commit}"
 BITBUCKET_STATUS=$(cat <<EOF

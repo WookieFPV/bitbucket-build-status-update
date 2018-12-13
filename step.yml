@@ -66,6 +66,6 @@ inputs:
   - bitbucket_status_url: $BITBUCKET_STATUS_URL
     opts:
       title: Url to bitbucket server api
-  - commit: $BITRISE_GIT_COMMIT
+  - commit: $GIT_CLONE_COMMIT_HASH
     opts:
       title: Commit
