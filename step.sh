@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-echo "Sending status ${STATUS} to bitbucket."
+echo "Sending status ${bitbucket_build_status} to bitbucket."
 URL="${BITBUCKET_STATUS_URL}/${BITRISE_GIT_COMMIT}"
 BITBUCKET_STATUS=$(cat <<EOF
 {
