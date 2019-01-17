@@ -47,7 +47,7 @@ type_tags:
 
 is_requires_admin_user: false
 is_always_run: true
-is_skippable: false
+is_skippable: true
 
 deps:
   apt_get:
