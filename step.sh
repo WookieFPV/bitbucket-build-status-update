@@ -20,8 +20,8 @@ BITBUCKET_STATUS=$(jq -n \
   --arg state       $bitbucket_build_status \
   --arg key         "BITRISE" \
   --arg url         $BITRISE_BUILD_URL \
-  --arg name        $GIT_CLONE_COMMIT_AUTHOR_NAME \
-  --arg description "$bitbucket_build_description" \
+  --arg name        "${GIT_CLONE_COMMIT_AUTHOR_NAME}" \
+  --arg description "${bitbucket_build_description}" \
   '{ state: $state, key: $key, url: $url, name: $name, description: $description }'
 )
 
