@@ -52,6 +52,10 @@ is_skippable: true
 deps:
   apt_get:
     - name: curl
+    - name: jq
+  brew:
+    - name: curl
+    - name: jq
 
 toolkit:
   bash:
@@ -60,9 +64,26 @@ toolkit:
 inputs:
   - bitbucket_build_status: AUTO
     opts:
-      title: Status
+      title: Status, which will be set on BitBucket
       is_required: true
       value_options: [SUCCESSFUL, FAILED, INPROGRESS, AUTO]
   - bitbucket_status_url: $BITBUCKET_STATUS_URL
     opts:
+      title: Url to BitBucket server api
+  - SECRET_BITBUCKET_AUTH: $SECRET_BITBUCKET_AUTH
+    opts:
       title: Url to bitbucket server api
+      is_required: true
+      is_sensitive: true
+  - GIT_CLONE_COMMIT_HASH: $GIT_CLONE_COMMIT_HASH
+    opts:
+      title: Commit hash
+      is_required: true
+  - GIT_CLONE_COMMIT_AUTHOR_NAME: $GIT_CLONE_COMMIT_AUTHOR_NAME
+    opts:
+      title: Commit author
+      is_required: true
+  - description: $GIT_CLONE_COMMIT_MESSAGE_BODY
+    opts:
+      title: description
+      is_required: true
