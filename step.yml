@@ -79,11 +79,13 @@ inputs:
     opts:
       title: Commit hash
       is_required: true
+      is_dont_change_value: true
   - GIT_CLONE_COMMIT_AUTHOR_NAME: $GIT_CLONE_COMMIT_AUTHOR_NAME
     opts:
       title: Commit author
       is_required: true
-  - description: $GIT_CLONE_COMMIT_MESSAGE_BODY
+      is_dont_change_value: true
+  - bitbucket_build_description: $GIT_CLONE_COMMIT_MESSAGE_BODY
     opts:
-      title: description
+      title: Description of changes in build
       is_required: true
