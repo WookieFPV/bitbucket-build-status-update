@@ -14,9 +14,9 @@ summary: |
 description: |
   Sends a status update to a bitbucket server via the REST API
   Requires secret BITBUCKET_AUTH (username:password)
-website: https://github.com/berichte/bitbucket-build-status-update.git
-source_code_url: https://github.com/berichte/bitbucket-build-status-update.git
-support_url: https://github.com/berichte/bitbucket-build-status-update.git
+website: https://github.com/the-Hill/bitbucket-build-status-update.git
+source_code_url: https://github.com/the-Hill/bitbucket-build-status-update.git
+support_url: https://github.com/the-Hill/bitbucket-build-status-update.git
 host_os_tags:
   - osx-10.10
   - ubuntu-16.04
@@ -70,21 +70,24 @@ inputs:
   - bitbucket_status_url: $BITBUCKET_STATUS_URL
     opts:
       title: Url to BitBucket server api
-  - SECRET_BITBUCKET_AUTH: $SECRET_BITBUCKET_AUTH
+  - secret_bitbucket_auth: $SECRET_BITBUCKET_AUTH
     opts:
       title: Url to bitbucket server api
       is_required: true
       is_sensitive: true
-  - GIT_CLONE_COMMIT_HASH: $GIT_CLONE_COMMIT_HASH
+  - git_clone_commit_hash: $GIT_CLONE_COMMIT_HASH
     opts:
       title: Commit hash
       is_required: true
       is_dont_change_value: true
-  - GIT_CLONE_COMMIT_AUTHOR_NAME: $GIT_CLONE_COMMIT_AUTHOR_NAME
+  - build_key: "BITRISE"
     opts:
-      title: Commit author
+      title: Build key
       is_required: true
-      is_dont_change_value: true
+  - build_name: $GIT_CLONE_COMMIT_AUTHOR_NAME
+    opts:
+      title: Build name
+      is_required: true
   - bitbucket_build_description: $GIT_CLONE_COMMIT_MESSAGE_BODY
     opts:
       title: Description of changes in build

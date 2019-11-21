@@ -14,13 +14,13 @@ if [ "$bitbucket_build_status" = "AUTO" ];then
 fi
 # printenv
 echo "Sending status ${bitbucket_build_status} to bitbucket."
-URL="${bitbucket_status_url}/${GIT_CLONE_COMMIT_HASH}"
+URL="${bitbucket_status_url}/${git_clone_commit_hash}"
 
 BITBUCKET_STATUS=$(jq -n \
   --arg state       $bitbucket_build_status \
-  --arg key         "BITRISE" \
+  --arg key         "${build_key}" \
   --arg url         $BITRISE_BUILD_URL \
-  --arg name        "${GIT_CLONE_COMMIT_AUTHOR_NAME}" \
+  --arg name        "${build_name}" \
   --arg description "${bitbucket_build_description}" \
   '{ state: $state, key: $key, url: $url, name: $name, description: $description }'
 )
@@ -29,6 +29,6 @@ echo "Sending update to $URL"
 echo "New status: $bitbucket_build_status"
 curl -X POST \
   $URL \
-  -u $SECRET_BITBUCKET_AUTH \
+  -u $secret_bitbucket_auth \
   -H 'Content-Type: application/json' \
   -d "$BITBUCKET_STATUS" \

@@ -1,28 +1,35 @@
 # Bitbucket build status update
 
-Sends a status update to a bitbucket server via the REST API
+Sends a status update to a BitBucket server via the REST API
+
+Further information: https://developer.atlassian.com/server/bitbucket/how-tos/updating-build-status-for-commits/
 
 ## How to use this Step
 
-add the BITBUCKET_STATUS_URL and SECRET_BITBUCKET_AUTH to your Env Vars/Secrets.
+Add your BitBucket authentication as a secret variable with the recommended key SECRET_BITBUCKET_AUTH.  
+We recommend to add BitBucket server url as env variable with the key BITBUCKET_STATUS_URL.
 
 ```
-envs:
-- BITBUCKET_STATUS_URL: url to the bitbucket server e.g. https://git.yourfancyserver.com/rest/build-status/1.0/commits
+secret variable:
 - SECRET_BITBUCKET_AUTH: auth for bitbucket server like: username:password
+
+env variable:
+- BITBUCKET_STATUS_URL: url to the bitbucket server e.g. https://git.yourbitbucketserver.com/rest/build-status/1.0/commits
 ```
+
+We recommend to add this step at the very beginning of your workflow and set the status to INPROGRESS.  
+At the very end of your workflow you can add this step with the status AUTO. AUTO will set SUCCESSFUL or FAILED depending on BITRISE_BUILD_STATUS.
+
+As default values for **name** GIT_CLONE_COMMIT_AUTHOR_NAME and for **description** GIT_CLONE_COMMIT_MESSAGE_BODY is used. As key the default "BITRISE" is used.
 
 Add the step to your yaml file:
 
 ```yml
 # ...
 workflows:
-  TestAndLint:
+  Checkout:
     steps:
-      - activate-ssh-key@4.0.3:
-          run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
-      - git-clone@4.0.13: {}
-      - git::https://github.com/berichte/bitbucket-build-status-update.git:
+      - git::https://github.com/the-Hill/bitbucket-build-status-update.git:
 # ...
 ```
 
