@@ -2,7 +2,11 @@
 # fail if any commands fails
 set -e
 # debug log
-set -x
+if [ "$is_debug_mode" == "yes" ]
+then
+  set -x
+  echo "debug log enabled"
+fi
 
 if [ "$bitbucket_build_status" = "AUTO" ];then
   echo "Selected AUTO bitbucket_build_status"

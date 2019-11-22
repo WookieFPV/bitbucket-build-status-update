@@ -22,6 +22,8 @@ At the very end of your workflow you can add this step with the status AUTO. AUT
 
 As default values for **name** GIT_CLONE_COMMIT_AUTHOR_NAME and for **description** GIT_CLONE_COMMIT_MESSAGE_BODY is used. As key the default "BITRISE" is used.
 
+Debug logs for step can be enabled by setting is_debug_mode to "yes".
+
 Add the step to your yaml file:
 
 ```yml

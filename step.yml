@@ -62,6 +62,15 @@ toolkit:
     entry_file: step.sh
 
 inputs:
+  - is_debug_mode: "no"
+    opts:
+      title: "Debug mode?"
+      description: |
+        Step prints additional debug information if this option
+        is enabled
+      value_options:
+        - "yes"
+        - "no"
   - bitbucket_build_status: AUTO
     opts:
       title: Status, which will be set on BitBucket
