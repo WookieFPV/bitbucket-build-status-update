@@ -84,7 +84,7 @@ inputs:
       title: Url to bitbucket server api
       is_required: true
       is_sensitive: true
-  - git_clone_commit_hash: $GIT_CLONE_COMMIT_HASH
+  - git_clone_commit_hash: $BITRISE_GIT_COMMIT
     opts:
       title: Commit hash
       is_required: true
@@ -97,7 +97,7 @@ inputs:
     opts:
       title: Build name
       is_required: true
-  - bitbucket_build_description: $GIT_CLONE_COMMIT_MESSAGE_BODY
+  - bitbucket_build_description: $BITRISE_GIT_MESSAGE
     opts:
       title: Description of changes in build
       is_required: true
