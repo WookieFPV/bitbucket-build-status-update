@@ -33,7 +33,6 @@ echo "Sending update to $URL"
 echo "New status: $bitbucket_build_status"
 curl -X POST \
   $URL \
-  -u $bitbucket_access_token \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer ${bitbucket_access_token}" \
   -d "$BITBUCKET_STATUS" \
