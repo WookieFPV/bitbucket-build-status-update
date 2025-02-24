@@ -1,38 +1,48 @@
 #!/bin/bash
-# fail if any commands fails
-set -e
-# debug log
-if [ "$is_debug_mode" == "yes" ]
-then
+# Fail on error and unset variables
+set -eu
+
+# Debug mode
+if [[ "$is_debug_mode" == "yes" ]]; then
   set -x
-  echo "debug log enabled"
+  echo "Debug log enabled"
 fi
 
-if [ "$bitbucket_build_status" = "AUTO" ];then
+# Determine Bitbucket build status
+if [[ "$bitbucket_build_status" == "AUTO" ]]; then
   echo "Selected AUTO bitbucket_build_status"
   bitbucket_build_status="FAILED"
-  echo "Setting build status to successful? ${BITRISE_BUILD_STATUS}"
-  if [ "$BITRISE_BUILD_STATUS" -eq "0" ];then
+
+  # Use more robust integer comparison
+  if [[ "$BITRISE_BUILD_STATUS" -eq 0 ]]; then
     bitbucket_build_status="SUCCESSFUL"
   fi
 fi
-# printenv
-echo "Sending status ${bitbucket_build_status} to bitbucket."
-URL="${bitbucket_status_url}/${git_clone_commit_hash}"
 
-BITBUCKET_STATUS=$(jq -n \
-  --arg state       $bitbucket_build_status \
-  --arg key         "${build_key}" \
-  --arg url         $BITRISE_BUILD_URL \
-  --arg name        "${build_name}" \
+# Bitbucket API URL
+url="${bitbucket_status_url}/${git_clone_commit_hash}"
+
+# Construct the JSON payload
+build_status_json=$(jq -n \
+  --arg state "$bitbucket_build_status" \
+  --arg key "${build_key}" \
+  --arg url "$BITRISE_BUILD_URL" \
+  --arg name "${build_name}" \
   --arg description "${bitbucket_build_description}" \
-  '{ state: $state, key: $key, url: $url, name: $name, description: $description }'
-)
+  '{ state: $state, key: $key, url: $url, name: $name, description: $description }')
 
-echo "Sending update to $URL"
+# Output for debugging
+echo "Sending update to: $url"
 echo "New status: $bitbucket_build_status"
+if [[ "$is_debug_mode" == "yes" ]]; then
+  echo "JSON Payload: $build_status_json"
+fi
+
+# Send the status to Bitbucket
 curl -X POST \
-  $URL \
+  "$url" \
   -H 'Content-Type: application/json' \
   -H "Authorization: Bearer ${bitbucket_access_token}" \
-  -d "$BITBUCKET_STATUS" \
+  -d "$build_status_json"
+
+echo "Bitbucket status update sent."
