@@ -14,12 +14,9 @@ summary: |
 description: |
   Sends a status update to a bitbucket server via the REST API
   Requires secret BITBUCKET_AUTH (username:password)
-website: https://github.com/the-Hill/bitbucket-build-status-update.git
-source_code_url: https://github.com/the-Hill/bitbucket-build-status-update.git
-support_url: https://github.com/the-Hill/bitbucket-build-status-update.git
-host_os_tags:
-  - osx-10.10
-  - ubuntu-16.04
+website: https://github.com/WookieFPV/bitbucket-build-status-update
+source_code_url: https://github.com/WookieFPV/bitbucket-build-status-update
+support_url: https://github.com/WookieFPV/bitbucket-build-status-update/issues
 
 # If this step should be available only for certain project types
 # just uncomment this `project_type_tags` section and include all the
@@ -38,6 +35,7 @@ host_os_tags:
 #   - react-native
 #   - cordova
 #   - ionic
+#   - flutter
 
 # Type tags are used for categorizing steps, for easier step discovery in Step Libraries.
 # You can find more information about type tags in the Step Development Guideline:
@@ -45,17 +43,24 @@ host_os_tags:
 type_tags:
   - notification
 
+# These properties define whether a Step is run in a given Workflow or not.
+# You can find more information about this in the documentation here:
+# https://devcenter.bitrise.io/en/steps-and-workflows/developing-your-own-bitrise-step/developing-a-new-step.html#setting-conditions-for-running-the-step
+#
 is_requires_admin_user: false
 is_always_run: true
 is_skippable: true
 
+# Use the `deps` property to declare dependencies that you can fetch from an OS dependency manager.
+# You can find more information about this in the documentation here:
+# https://devcenter.bitrise.io/en/steps-and-workflows/developing-your-own-bitrise-step/developing-a-new-step.html#submodules-and-step-dependencies
 deps:
   apt_get:
-    - name: curl
-    - name: jq
+  - name: curl
+  - name: jq
   brew:
-    - name: curl
-    - name: jq
+  - name: curl
+  - name: jq
 
 toolkit:
   bash:

@@ -31,7 +31,7 @@ Add the step to your yaml file:
 workflows:
   Checkout:
     steps:
-      - git::https://github.com/the-Hill/bitbucket-build-status-update.git:
+      - git::https://github.com/WookieFPV/bitbucket-build-status-update.git:
 # ...
 ```
 
